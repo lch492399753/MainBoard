@@ -1,0 +1,54 @@
+#include "PID.h"
+#include "pwm.h"
+#include "string.h"
+#include "stdio.h"
+#include "usart.h"
+//extern u32 tempup1;	//²¶»ñ×Ü¸ßµçÆ½µÄÊ±¼ä
+//extern u32 tempup2;	//²¶»ñ×Ü¸ßµçÆ½µÄÊ±¼
+
+float Kp=-0.1,Ki=-0.3,Kd=-0.4;
+	short error,last_error,pre_error;
+	
+
+	short error_p,last_error_p,pre_error_P;
+u16 Left_pwm=740,Right_pwm=740;
+
+void Speed_Left (short std_speed,short curr_speed)
+{
+
+//usart1Printf("curr_speed  %d \r\n",curr_speed);
+//	usart1Printf("std_speed  %d \r\n",std_speed);
+	 // Preset_Pwm=speed*8;
+	error=std_speed-curr_speed;
+   //Left_pwm=Left_pwm+Kp*error+Ki*(error-last_error)+Kd*(error+pre_error-2*last_error);
+	 Left_pwm=Left_pwm+Kp*error+Ki*(error-last_error);
+	 last_error=pre_error;
+   pre_error=error;
+  //usart1Printf("error  %d \r\n",error);
+//	usart1Printf("Left_pwm  %d \r\n",Left_pwm);
+	  if(Left_pwm>720)Left_pwm=720;		
+	  if(Left_pwm<200)Left_pwm=200;
+  
+    TIM_SetCompare2(TIM3,Left_pwm);
+	
+}
+void Speed_Right (short std_speed,short curr_speed)
+{
+
+	  
+	
+ // if(curr_speed>5) 
+	 error=std_speed-curr_speed;
+   //Right_pwm=Right_pwm+Kp*error+Ki*(error-last_error)+Kd*(error+pre_error-2*last_error);
+	
+	Right_pwm=Right_pwm+Kp*error+Ki*(error-last_error);
+	 last_error=pre_error;
+   pre_error=error;
+	
+
+	
+		if(Right_pwm>720)Right_pwm=720;
+		if(Right_pwm<200)Right_pwm=200;
+    TIM_SetCompare1(TIM3,Right_pwm);
+	 		
+}

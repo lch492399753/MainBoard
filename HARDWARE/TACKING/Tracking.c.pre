@@ -1,0 +1,157 @@
+#include "Tracking.h"
+#include "gpio.h"
+#include "PID.h"
+#include "PWM.h"
+
+u8 X=35,Y=35; 
+u8 zuo_chu=0,you_chu=0;
+
+u16 speed_zhuanhuan( u32 speed_zhouqi)
+{
+	
+return  (u16)((1.0/speed_zhouqi)*10000.0);
+}
+
+void Tracking(short SPEED)
+{
+	
+	u8 i=0,flag_agv=0;
+	u8 zuo=0,zhong=0,you=0;
+	AGV_Sensor(); 
+	flag_agv=0;
+	if((key[0]+left1+right1+key[15]!=16)){
+			while(i!=16)
+				{
+				 { 				
+						 if(key[i]==0)	
+						{
+							flag_agv=1;
+							zhong++;
+						}
+					else			
+						{  
+							if(flag_agv==0)
+							you++; 
+							else
+							zuo++;	   
+						}
+						i++;
+				 }
+				}				
+				if((key[0]==0)&&(zuo==15)){			 
+				 zuo_chu=0;you_chu=1;
+			  }		
+				if((key[15]==0)&&(you==15)){	
+			  zuo_chu=1;you_chu=0;
+		    }	
+				if((you!=15)&&(zuo!=15))
+				{
+				 zuo_chu=0;you_chu=0;
+				}
+}
+		
+         if(zuo>you)
+				 {
+	             SPEEDL=SPEED;
+               SPEEDR=SPEED-(zuo-you)*2;
+         }
+				 else 
+				 {
+				     SPEEDR=SPEED;
+             SPEEDL=SPEED-(you-zuo)*2;
+				 }
+
+
+
+	//usart2Printf("%d,%d,%d\r\n",zuo,zhong,you);			
+}
+//void Tracking(short SPEED)
+//{
+//	u8 i;
+//	for(i=16;i>0;i--)
+//	{
+//	 if(key[i]==1)
+//	
+//	
+//	}
+//			if((key15==1)&&(key0==1)){ 
+//				if((right1-left1)>=0)  {			
+//            SPEEDR=SPEED;				
+//					if((key9==0)&&(key10==1))
+//					{
+//					 	SPEEDL=(SPEED-((right1-left1)*2));
+//					} else if((key10==0)&&(key11==1))
+//					        {
+//						        SPEEDL=(SPEED*(X-1)/Y);
+//									}
+//	                else if((key11==0)&&(key12==1))
+//												{																
+//							           SPEEDL=(SPEED*(X-3)/Y);
+//												} else if((key12==0)&&(key13==1))
+//																{
+//																SPEEDL=(SPEED*(X-7)/Y);
+//																} else if((key13==0)&&(key14==1))
+//																				{
+//																			SPEEDL=(SPEED*(X-11)/Y);																	
+//																				}else if((key14==0)&&(key15==1))
+//																								{
+//																			        SPEEDL=(SPEED*(X-13)/Y);
+//																								}
+//                                               else
+//																							 {
+//																					            SPEEDR=SPEED;
+//																							 }	
+//								 
+//				 }			
+//			  else if((right1-left1)<0){			 
+//        SPEEDL=SPEED;
+//    if((key6==0)&&(key5==1))
+//					{
+//			      SPEEDR=(SPEED-((right1-left1)*2));
+//					} else if((key5==0)&&(key4==1))
+//					        {
+//						      SPEEDR=(SPEED*(X-1)/Y);
+//									}
+//	                else if((key4==0)&&(key2==1))
+//												{
+//								            SPEEDR=(SPEED*(X-3)/Y);
+//												} else if((key3==0)&&(key2==1))
+//																{
+//																SPEEDR=(SPEED*(X-7)/Y);													
+//																} else if((key2==0)&&(key1==1))
+//																				{
+//																				SPEEDR=(SPEED*(X-11)/Y);																														
+//																				}else if((key1==0)&&(key0==1))
+//																								{
+//																								SPEEDR=(SPEED*(X-13)/Y);
+//																								}	
+//																								else 
+//																								{
+//																							SPEEDL=SPEED;																						
+//																								}
+
+//	      }
+//				zuo_chu=0;
+//				you_chu=0;
+//		  }
+//		 else{
+//			 
+//			 if(key0==0){
+//			
+//        SPEEDR=0;			
+//				SPEEDL=50;		 
+//				  you_chu=1;
+//			 }
+//				
+//				if(key15==0){	
+//        SPEEDL=0;			
+//				SPEEDR=50;	
+//					 zuo_chu=1;
+//       
+//		    }	
+//			 
+//				
+//		 }	
+//	
+//	
+//}
