@@ -35,6 +35,7 @@
 "..\obj\stm32f10x_exti.o"
 "..\obj\posewithvoice_fun.o"
 "..\obj\common.o"
+"..\obj\obst.o"
 --library_type=microlib --strict --scatter "..\OBJ\REMOTE.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

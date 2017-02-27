@@ -552,12 +552,12 @@ ARM Macro Assembler    Page 9
               00000000 
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
-ork --depend=..\obj\startup_stm32f10x_hd.d -o..\obj\startup_stm32f10x_hd.o -IG:
-\miclound\Work\机器人YUAN\机器人\源代码\Desktop\底盘+麦克矩阵\USER\RTE -Id:\Kei
-l_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0 -Id:\Keil_v5\ARM\CMSIS\Include -Id:\Keil
-_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include --predefine="__MICROLIB SE
-TA 1" --predefine="__UVISION_VERSION SETA 514" --predefine="STM32F10X_HD SETA 1
-" --list=.\startup_stm32f10x_hd.lst ..\CORE\startup_stm32f10x_hd.s
+ork --depend=..\obj\startup_stm32f10x_hd.d -o..\obj\startup_stm32f10x_hd.o -IE:
+\CZRobot\MainBoard\USER\RTE\_REMOTE -IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.
+1.0\Device\Include -IC:\Keil_v5\ARM\CMSIS\Include --predefine="__EVAL SETA 1" -
+-predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 522" --prede
+fine="STM32F10X_HD SETA 1" --list=.\startup_stm32f10x_hd.lst ..\CORE\startup_st
+m32f10x_hd.s
 
 
 
@@ -1429,4 +1429,4 @@ Symbol: __main
       At line 153 in file ..\CORE\startup_stm32f10x_hd.s
 Comment: __main used once
 2 symbols
-422 symbols in table
+423 symbols in table

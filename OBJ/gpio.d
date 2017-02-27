@@ -1,7 +1,7 @@
 ..\obj\gpio.o: ..\HARDWARE\GPIO\GPIO.c
 ..\obj\gpio.o: ..\USER\stm32f10x.h
 ..\obj\gpio.o: ..\CORE\core_cm3.h
-..\obj\gpio.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\gpio.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\gpio.o: ..\USER\system_stm32f10x.h
 ..\obj\gpio.o: ..\USER\stm32f10x_conf.h
 ..\obj\gpio.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h

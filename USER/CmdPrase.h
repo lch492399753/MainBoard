@@ -134,6 +134,6 @@ uint8_t GetCheckSum(uint8_t *uBuff, uint8_t uBuffLen) ;
 void CMDPrase(void);
 void SetARAct( char ar, char dir, uint16_t Angel, uint16_t Speed);
 void SetExpress( char express_id);
-void SetObst(uint8_t obst_id, uint8_t dis0, uint8_t dis1, uint8_t dis2);
+void SetObst(uint8_t dis);
 void SetLimit( char _cmd);
 #endif

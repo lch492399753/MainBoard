@@ -8,6 +8,7 @@
 #include "PID.h"
 #include "CmdPrase.h"
 #include "motor.h"
+#include "obst.h"
 
 u8 ii=0,pos_flag=0;
 //static  u8 t1=0,t2=0,wt1=0,wt2=0;
@@ -496,7 +497,8 @@ void ID_0(char *str,u16 start,u16 length)
                     dengtiao(B2);
                     break;
                 case 'A':
-					SetObst(0, EEEEE, EEEEE, EEEEE);
+					//SetObst(0, EEEEE, EEEEE, EEEEE);
+					CmdSetObst( EEEEE);
 					ii--;
 					//RingBuffer_InsertMult(&g_tUSART3TxRingBuf, CMDBlk.u8CMDBodyByte, 16);
                     

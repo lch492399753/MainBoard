@@ -18,6 +18,8 @@
 #include "PoseWithVoice_Fun.h"
 #include "motor.h"
 #include "inv_mpu.h"
+#include "obst.h"
+
 u16 ID0_start,ID0_length,IDN_length,
     ID1_start,ID1_length,ID2_start,ID2_length,ID3_start,ID3_length,ID4_start,ID4_length,ID5_start,ID5_length,
     ID6_start,ID6_length,ID7_start,ID7_length,ID8_start,ID8_length,ID9_start,ID9_length,ID10_start,ID10_length,
@@ -730,10 +732,10 @@ uint16_t Angel = 0;
 uint16_t AngelDir = 0;
 int main(void)
 {
-	uint8_t data[17] = {0};
+	
 	uint8_t cmd[5] = {0};
     uint8_t touch1 = 0;
-	CMDBlkTypeDef cmd_blk;
+	
     delay_init();
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
     uart_init(115200);
@@ -771,38 +773,38 @@ int main(void)
 
     while(1)
     {
-		if( RingBuffer_GetCount(&g_tUSART3TxRingBuf) > 0 )
-		{
-			memset(&data,0,17);
-			if( RingBuffer_PopMult( &g_tUSART3TxRingBuf, data, 17) )
-			{
-				USART3_SendStrings(data,17);
-			}
-		}
+//		if( RingBuffer_GetCount(&g_tUSART3TxRingBuf) > 0 )
+//		{
+//			memset(&data,0,17);
+//			if( RingBuffer_PopMult( &g_tUSART3TxRingBuf, data, 17) )
+//			{
+//				USART3_SendStrings(data,17);
+//			}
+//		}
 		
 		TurnWithVoice( RobotGetPos() );
 		
-		if( RingBuffer_GetCount(&g_tUSART3RxRingBuf) > 0 )
-		{
-			memset(&cmd_blk,0,sizeof(cmd_blk));
-			if( RingBuffer_PopMult( &g_tUSART3RxRingBuf, cmd_blk.u8CMDBodyByte, 17) )
-			{
-				if( (cmd_blk.CMDBodyBlk.u8HeadFlag == 0x02) &&(cmd_blk.CMDBodyBlk.u8TailFlag == 0x03) )
-				{
-					g_u8ObstFlg = cmd_blk.CMDBodyBlk.u8ObstDis0;
-				}
-				else
-				{
-					RingBuffer_Flush(&g_tUSART3RxRingBuf);
-				}
-				
-				
-			}
-			else
-			{
-				RingBuffer_Flush(&g_tUSART3RxRingBuf);
-			}
-		}
+//		if( RingBuffer_GetCount(&g_tUSART3RxRingBuf) > 0 )
+//		{
+//			memset(&cmd_blk,0,sizeof(cmd_blk));
+//			if( RingBuffer_PopMult( &g_tUSART3RxRingBuf, cmd_blk.u8CMDBodyByte, 17) )
+//			{
+//				if( (cmd_blk.CMDBodyBlk.u8HeadFlag == 0x02) &&(cmd_blk.CMDBodyBlk.u8TailFlag == 0x03) )
+//				{
+//					g_u8ObstFlg = cmd_blk.CMDBodyBlk.u8ObstDis0;
+//				}
+//				else
+//				{
+//					RingBuffer_Flush(&g_tUSART3RxRingBuf);
+//				}
+//				
+//				
+//			}
+//			else
+//			{
+//				RingBuffer_Flush(&g_tUSART3RxRingBuf);
+//			}
+//		}
         if( flag_RecFul==1)
         {
            OneLine(redata);
@@ -867,7 +869,7 @@ int main(void)
             break;
             case 6:
             {
-                if(g_u8ObstCount>0)
+                if((g_u8ObstCount>0) && (IsObstOpen()))
                 {
 					g_S8SpeedLTarget = 0;
 					g_S8SpeedRTarget = 0;

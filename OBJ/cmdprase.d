@@ -3,7 +3,7 @@
 ..\obj\cmdprase.o: ..\SYSTEM\sys\sys.h
 ..\obj\cmdprase.o: ..\USER\stm32f10x.h
 ..\obj\cmdprase.o: ..\CORE\core_cm3.h
-..\obj\cmdprase.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\cmdprase.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\cmdprase.o: ..\USER\system_stm32f10x.h
 ..\obj\cmdprase.o: ..\USER\stm32f10x_conf.h
 ..\obj\cmdprase.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h
@@ -32,6 +32,8 @@
 ..\obj\cmdprase.o: ..\STM32F10x_FWLib\inc\misc.h
 ..\obj\cmdprase.o: ..\SYSTEM\usart\ring_buffer.h
 ..\obj\cmdprase.o: ..\SYSTEM\usart\usart.h
-..\obj\cmdprase.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\cmdprase.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\cmdprase.o: ..\HARDWARE\STMFLASH\stmflash.h
-..\obj\cmdprase.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+..\obj\cmdprase.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+..\obj\cmdprase.o: ..\Funs\obst.h
+..\obj\cmdprase.o: ..\HARDWARE\GPIO\gpio.h

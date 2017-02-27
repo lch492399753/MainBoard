@@ -3,36 +3,142 @@
 <pre>
 <h1>礦ision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: μVision V5.14.0.0
-Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: 1 1, 1, LIC=UJWSB-247Q7-SB9EJ-U4SKL-MF38X-QYIUK
+IDE-Version: μVision V5.22.0.0
+Copyright (C) 2016 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: 1 Microsoft, Microsoft, LIC=----
  
 Tool Versions:
-Toolchain:       MDK-ARM Standard  Version: 5.14.0.0
-Toolchain Path:  d:\Keil_v5\ARM\ARMCC\Bin
-C Compiler:      Armcc.exe V5.05 update 1 (build 106)
-Assembler:       Armasm.exe V5.05 update 1 (build 106)
-Linker/Locator:  ArmLink.exe V5.05 update 1 (build 106)
-Library Manager: ArmAr.exe V5.05 update 1 (build 106)
-Hex Converter:   FromElf.exe V5.05 update 1 (build 106)
-CPU DLL:         SARMCM3.DLL V5.14.0.0
-Dialog DLL:      DARMSTM.DLL V1.65.0.0
-Target DLL:      Segger\JL2CM3.dll V2.99.13.0
-Dialog DLL:      TARMSTM.DLL V1.64.0.0
+Toolchain:       MDK-Lite  Version: 5.22
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 4 (build 422)
+Assembler:       Armasm.exe V5.06 update 4 (build 422)
+Linker/Locator:  ArmLink.exe V5.06 update 4 (build 422)
+Library Manager: ArmAr.exe V5.06 update 4 (build 422)
+Hex Converter:   FromElf.exe V5.06 update 4 (build 422)
+CPU DLL:         SARMCM3.DLL V5.22
+Dialog DLL:      DARMSTM.DLL V1.67.0.0
+Target DLL:      Segger\JL2CM3.dll V2.99.23.0
+Dialog DLL:      TARMSTM.DLL V1.66.0.0
  
 <h2>Project:</h2>
-G:\miclound\Work\机器人YUAN\机器人\源代码\Desktop\底盘+麦克矩阵\USER\REMOTE.uvprojx
-Project File Date:  02/20/2017
+E:\CZRobot\MainBoard\USER\REMOTE.uvprojx
+Project File Date:  02/26/2017
 
 <h2>Output:</h2>
-Build target 'REMOTE'
-"..\OBJ\REMOTE.axf" - 0 Error(s), 0 Warning(s).
+*** Using Compiler 'V5.06 update 4 (build 422)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+Rebuild target 'REMOTE'
+compiling stm32f10x_it.c...
+compiling system_stm32f10x.c...
+compiling main.c...
+..\Funs\rpstm32.h(102): warning:  #47-D: incompatible redefinition of macro "MIN"  (declared at line 40 of "..\SYSTEM\usart\ring_buffer.h")
+  #define MIN(a,b) ( ((a) > (b))?(b):(a))
+..\Funs\rpstm32.h(103): warning:  #47-D: incompatible redefinition of macro "MAX"  (declared at line 37 of "..\SYSTEM\usart\ring_buffer.h")
+  #define MAX(a,b) ( ((a) < (b))?(b):(a))
+main.c(736): warning:  #177-D: variable "cmd"  was declared but never referenced
+  	uint8_t cmd[5] = {0};
+main.c(737): warning:  #177-D: variable "touch1"  was declared but never referenced
+      uint8_t touch1 = 0;
+main.c: 4 warnings, 0 errors
+compiling stm32f10x_flash.c...
+compiling GPIO.c...
+..\HARDWARE\GPIO\GPIO.c(123): warning:  #1-D: last line of file ends without a newline
+  }
+..\HARDWARE\GPIO\GPIO.c: 1 warning, 0 errors
+compiling pwm.c...
+..\Funs\rpstm32.h(102): warning:  #47-D: incompatible redefinition of macro "MIN"  (declared at line 40 of "..\SYSTEM\usart\ring_buffer.h")
+  #define MIN(a,b) ( ((a) > (b))?(b):(a))
+..\Funs\rpstm32.h(103): warning:  #47-D: incompatible redefinition of macro "MAX"  (declared at line 37 of "..\SYSTEM\usart\ring_buffer.h")
+  #define MAX(a,b) ( ((a) < (b))?(b):(a))
+..\HARDWARE\PWM\pwm.c(100): warning:  #177-D: variable "tmp"  was declared but never referenced
+  	uint8_t tmp = 0;
+..\HARDWARE\PWM\pwm.c: 3 warnings, 0 errors
+compiling stmflash.c...
+compiling jiexi.c...
+..\Funs\rpstm32.h(102): warning:  #47-D: incompatible redefinition of macro "MIN"  (declared at line 40 of "..\SYSTEM\usart\ring_buffer.h")
+  #define MIN(a,b) ( ((a) > (b))?(b):(a))
+..\Funs\rpstm32.h(103): warning:  #47-D: incompatible redefinition of macro "MAX"  (declared at line 37 of "..\SYSTEM\usart\ring_buffer.h")
+  #define MAX(a,b) ( ((a) < (b))?(b):(a))
+..\HARDWARE\TONGXINJIEXI\jiexi.c: 2 warnings, 0 errors
+compiling PID.c...
+compiling Tracking.c...
+compiling myiic.c...
+compiling wtc7514.c...
+compiling iFlytek.c...
+..\HARDWARE\iFlytek\iFlytek.c(157): warning:  #111-D: statement is unreachable
+  			g_tVoiceCtl.u8IsWakeUp = 0 ;
+..\HARDWARE\iFlytek\iFlytek.c(162): warning:  #223-D: function "memset" declared implicitly
+  		memset(USART2_RX_BUF,0,USART2_RX_STA);
+..\HARDWARE\iFlytek\iFlytek.c: 2 warnings, 0 errors
+compiling AGV_Sensor.c...
+..\HARDWARE\AGVSensor\AGV_Sensor.c(190): warning:  #177-D: variable "left_cnt"  was declared but never referenced
+  	uint8_t left_cnt;
+..\HARDWARE\AGVSensor\AGV_Sensor.c(191): warning:  #177-D: variable "right_cnt"  was declared but never referenced
+  	uint8_t right_cnt;
+..\HARDWARE\AGVSensor\AGV_Sensor.c(192): warning:  #177-D: variable "gap_pos"  was declared but never referenced
+  	uint8_t gap_pos = 0;
+..\HARDWARE\AGVSensor\AGV_Sensor.c(255): warning:  #167-D: argument of type "volatile char *" is incompatible with parameter of type "void *"
+  	memset(key ,1 ,16);
+..\HARDWARE\AGVSensor\AGV_Sensor.c: 4 warnings, 0 errors
+compiling mpu6050.c...
+compiling motor.c...
+..\HARDWARE\motor\motor.c(590): warning:  #177-D: variable "speedctl_frequency"  was declared but never referenced
+  static _u32 speedctl_frequency = 0;
+..\HARDWARE\motor\motor.c: 1 warning, 0 errors
+compiling wifiap.c...
+compiling mpuiic.c...
+compiling inv_mpu_dmp_motion_driver.c...
+compiling inv_mpu.c...
+compiling delay.c...
+compiling usart.c...
+..\SYSTEM\usart\usart.c(493): warning:  #177-D: variable "Res"  was declared but never referenced
+      u8 Res;
+..\SYSTEM\usart\usart.c(576): warning:  #177-D: variable "Ka"  was declared but never referenced
+  	u8 Res,Ka,ka_biaozhi;
+..\SYSTEM\usart\usart.c(576): warning:  #177-D: variable "ka_biaozhi"  was declared but never referenced
+  	u8 Res,Ka,ka_biaozhi;
+..\SYSTEM\usart\usart.c(19): warning:  #550-D: variable "wei"  was set but never used
+  static u8 tou=0,wei=0;
+..\SYSTEM\usart\usart.c: 4 warnings, 0 errors
+compiling ring_buffer.c...
+compiling sys.c...
+compiling CmdPrase.c...
+CmdPrase.c(194): warning:  #177-D: variable "_dis"  was declared but never referenced
+  	uint8_t _dis[3] = {0};
+CmdPrase.c: 1 warning, 0 errors
+assembling startup_stm32f10x_hd.s...
+compiling core_cm3.c...
+compiling misc.c...
+compiling stm32f10x_rcc.c...
+compiling stm32f10x_gpio.c...
+compiling stm32f10x_fsmc.c...
+compiling stm32f10x_tim.c...
+compiling stm32f10x_usart.c...
+compiling PoseWithVoice_Fun.c...
+..\Funs\PoseWithVoice_Fun.c(18): warning:  #177-D: variable "temp"  was declared but never referenced
+  	short temp;					//温度	
+..\Funs\PoseWithVoice_Fun.c: 1 warning, 0 errors
+compiling stm32f10x_exti.c...
+compiling obst.c...
+..\Funs\obst.c(12): warning:  #177-D: variable "index"  was declared but never referenced
+  	uint8_t index = 0;
+..\Funs\obst.c(40): warning:  #177-D: variable "index"  was declared but never referenced
+  	uint8_t index =0;
+..\Funs\obst.c: 2 warnings, 0 errors
+compiling common.c...
+linking...
+..\OBJ\REMOTE.axf: Error: L6200E: Symbol g_u8ObstFlg multiply defined (by obst.o and main.o).
+Not enough information to list image symbols.
+Not enough information to list the image map.
+Finished: 2 information, 0 warning and 1 error messages.
+"..\OBJ\REMOTE.axf" - 1 Error(s), 25 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
-  G:\miclound\Work\机器人YUAN\机器人\源代码\Desktop\底盘+麦克矩阵\USER\RTE
-  d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0
+  E:\CZRobot\MainBoard\USER\RTE\_REMOTE
+  C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
+Target not created.
+Build Time Elapsed:  00:00:12
 </pre>
 </body>
 </html>
