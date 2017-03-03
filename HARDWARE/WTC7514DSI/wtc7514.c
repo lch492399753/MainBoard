@@ -1,14 +1,10 @@
 #include "wtc7514.h"
 #include "delay.h"
+#include "sys.h"
 
-
+uint8_t WT7514_ADDR[4] = {0x70,0x74,0x78,0x7c};
 
 //初始化IIC接口
-void WTC7514_Init(void)
-{
-    IIC_Init();
-    IIC_Stop();//产生一个停止条件
-}
 
 u16 WTC7514_ReadTwoByte(u8 _addr)
 {
@@ -67,3 +63,64 @@ u16 WTC7514_ReadTwoByte_head(void)
     rlt+=temp2;
     return rlt;
 }
+
+uint16_t g_u16TouchVal[WT7514_CH_CNT] = {0};
+uint16_t g_u16TouchValPre[WT7514_CH_CNT] = {0};
+uint16_t g_u16TouchValue = 0;
+void touch_heartbeat()
+{
+	uint8_t index = 0;
+	
+	for(index=0; index < WT7514_CH_CNT; index++)
+	{
+		g_u16TouchVal[index] = WTC7514_ReadTwoByte( WT7514_ADDR[index] );
+		
+		if(g_u16TouchVal[index] != g_u16TouchValPre[index])
+		{
+			
+			switch( g_u16TouchVal[index] )
+			{
+				case WTC7514_TOUCHED_NONE:
+				{
+					g_u16TouchValue = TOUCH_NONE;
+					break;
+				}
+
+				case WTC7514_TOUCHED_CH(8):
+				{
+					g_u16TouchValue = TOUCH_MOUTH;
+					//walking_flag=0;
+					break;
+				}
+
+				case WTC7514_TOUCHED_CH(9):
+				{
+					g_u16TouchValue = TOUCH_MOUTH;
+					//walking_flag=0;
+					break;
+				}
+
+				case WTC7514_TOUCHED_CH(10):
+				{
+					g_u16TouchValue = TOUCH_HEAD;
+					//walking_flag=0;
+					break;
+				}
+
+				case WTC7514_TOUCHED_CH(11):
+				{
+					g_u16TouchValue = TOUCH_HEAD;
+					//walking_flag=0;
+					break;
+				}
+
+				default:
+					break;
+			}
+			//usart4Printf("{\"content\":\"00000%d000000000\"}",touch_val);
+			g_u16TouchVal[index] = g_u16TouchValPre[index] ;
+			g_u8Update2PAD_FLG = 1;
+		}
+	}
+}
+
