@@ -19,6 +19,7 @@
 #include "motor.h"
 #include "inv_mpu.h"
 #include "obst.h"
+#include "rfid.h"
 
 u16 ID0_start,ID0_length,IDN_length,
     ID1_start,ID1_length,ID2_start,ID2_length,ID3_start,ID3_length,ID4_start,ID4_length,ID5_start,ID5_length,
@@ -380,11 +381,6 @@ void OneLine(char *str)
 {
     u16  ii,n=0,IDY_length,nn=0;
     u8 ID=250,IID;
-//     for(t=0;t<flag_ten;t++)
-//          {
-//              USART_SendData(UART4, str[t]);//向串口1发送数据
-//              while(USART_GetFlagStatus(UART4,USART_FLAG_TC)!=SET);//等待发送结束
-//          }
 
     ID=ASC_To_Valu(str[2])*100+ASC_To_Valu(str[3])*10+ASC_To_Valu(str[4]);
 //usart4Printf("%d",*p);
@@ -493,136 +489,8 @@ void Wifi_Ok()
 //  {usart4Printf("{\"request\":\"keepalive\"}");a=0;}
     }
 }
-uint8_t touch2 ,touch3,pre_touch2,pre_touch3;
-void TouchValUpdateHead()
-{
-    GetValhead=WTC7514_ReadTwoByte_head();
 
-    if(GetValhead!=pre_GetValhead)
-    {
-        switch(GetValhead)
-        {
-            case 0:
-            {
-                touch2=0;
-            }
-            break;
-            case 1024:
-            {
-                touch2=1;
-                //walking_flag=0;
-            }
-            break;
-            case 512:
-            {
-                touch2=2;
-                //walking_flag=0;
-            }
-            break;
-            case 256:
-            {
-                touch2=3;
-                //walking_flag=0;
-            }
-            break;
-        }
-        if(touch2!=pre_touch2)
-        {
-            usart4Printf("{\"content\":\"00000%d000000000\"}",touch2);
-            pre_touch2=touch2;
-        }
-        pre_GetValhead=GetValhead;
-    }
-}
 
-void TouchValUpdate()
-{
-    GetVal=WTC7514_ReadTwoByte(WTC7514_ADDR);
-
-    if(GetVal!=pre_GetVal)
-    {
-        switch(GetVal)
-        {
-            case WTC7514_TOUCHED_NONE:
-            {
-                touch3 = TOUCH_NONE;
-                break;
-            }
-
-            case WTC7514_TOUCHED_CH(8):
-            {
-                touch3 = TOUCH_MOUTH;
-                //walking_flag=0;
-                break;
-            }
-
-            case WTC7514_TOUCHED_CH(9):
-            {
-                touch3 = TOUCH_MOUTH;
-                //walking_flag=0;
-                break;
-            }
-
-            case WTC7514_TOUCHED_CH(10):
-            {
-                touch3 = TOUCH_HEAD;
-                //walking_flag=0;
-                break;
-            }
-
-            case WTC7514_TOUCHED_CH(11):
-            {
-                touch3 = TOUCH_HEAD;
-                //walking_flag=0;
-                break;
-            }
-
-            default:
-                break;
-        }
-        if(touch3!=pre_touch3)
-        {
-            usart4Printf("{\"content\":\"00000%d000000000\"}",touch3);
-            pre_touch3 = touch3;
-        }
-//      usart4Printf("{\"content\":\"00000%d000000000\"}",1);
-        pre_GetVal=GetVal;
-    }
-}
-
-uint8_t g_u8CardH = 0;
-uint8_t g_u8CardL = 0;
-void sensor_update()
-{
-    static  u8 update_flag=0;
-
-    u8 Card1,Card2;
-
-    Card1=Card/10;
-    Card2=Card%10;
-	
-    if(pre_card!=Card)
-    {
-		g_u8CardH = Card/10;
-		g_u8CardL = Card%10;
-        pre_card=Card;
-        update_flag=1;
-    }
-    if(pre_Obstacte!=Obstacte)
-    {
-        pre_Obstacte=Obstacte;
-        update_flag=1;
-    }
-    if(update_flag==1)
-    {
-        update_flag=0;
-
-        // usart4Printf("{\"content\":\"111\"}");
-        usart4Printf("{\"content\":\"00%d%d%d000000000\"}",Card1,Card2,Obstacte);
-
-    }
-//usart4Printf("{2\r\n}");
-}
 
 
 void Diao_tou()
@@ -650,65 +518,65 @@ void Diao_tou()
 
 }
 void AGV_Sensor(void);
-uint8_t agv_cnt = 0;
+
 __IO uint8_t g_u8AutoRunFlg =0;
 uint8_t g_u8StopFlg = 0;
-void zidao(short Speed)
-{
-	uint16_t u16Speed=0;
-    turn_flag=2;
-    
-	
-	//AGV_Sensor();
-    agv_cnt = key[0]+left1+right1+key[15];
-    if( key[0]+left1+right1+key[15]==16 )           //出轨
-    {
-        if( (zuo_chu==0)&&(you_chu==1) )
-        {
-            //Walk_Stop
-//            Walk_Forward
-//            //Walk_Left_Zhuan;
-//            SPEEDL=0;
-//            SPEEDR=Speed;
-			g_S8SpeedRTarget=30;
-			g_S8SpeedLTarget=0;
-        }
-        if( (zuo_chu==1)&&(you_chu==0) )
-        {
+//void zidao(short Speed)
+//{
+//	uint16_t u16Speed=0;
+//    turn_flag=2;
+//    
+//	
+//	//AGV_Sensor();
+//    agv_cnt = key[0]+left1+right1+key[15];
+//    if( key[0]+left1+right1+key[15]==16 )           //出轨
+//    {
+//        if( (zuo_chu==0)&&(you_chu==1) )
+//        {
+//            //Walk_Stop
+////            Walk_Forward
+////            //Walk_Left_Zhuan;
+////            SPEEDL=0;
+////            SPEEDR=Speed;
+//			g_S8SpeedRTarget=30;
+//			g_S8SpeedLTarget=0;
+//        }
+//        if( (zuo_chu==1)&&(you_chu==0) )
+//        {
 
-			g_S8SpeedRTarget=0;
-			g_S8SpeedLTarget=30;
-        }
-        if( (zuo_chu==0)&(you_chu==0) )
-        {
-            //Walk_Left_Zhuan;
-//            Walk_Forward;
-//            SPEEDL=Speed;
-//            SPEEDR=0;
-			g_S8SpeedRTarget=0;
-			g_S8SpeedLTarget=30;
-        }
-		SPEEDR=g_S8SpeedRCurr;
-		SPEEDL=g_S8SpeedLCurr;
-		g_S8SpeedAutoCurr = 0;
-    }
-    else
-    {
-//		if(g_u8AutoRunFlg == 0)
+//			g_S8SpeedRTarget=0;
+//			g_S8SpeedLTarget=30;
+//        }
+//        if( (zuo_chu==0)&(you_chu==0) )
+//        {
+//            //Walk_Left_Zhuan;
+////            Walk_Forward;
+////            SPEEDL=Speed;
+////            SPEEDR=0;
+//			g_S8SpeedRTarget=0;
+//			g_S8SpeedLTarget=30;
+//        }
+//		SPEEDR=g_S8SpeedRCurr;
+//		SPEEDL=g_S8SpeedLCurr;
+//		g_S8SpeedAutoCurr = 0;
+//    }
+//    else
+//    {
+////		if(g_u8AutoRunFlg == 0)
+////		{
+////			//g_u8AutoRunFlg =1;
+////		}
+////        else
 //		{
-//			//g_u8AutoRunFlg =1;
+//			//Walk_Forward;
+//			WALK_LEFT_FRONT();
+//			WALK_RIGHT_FRONT();
 //		}
-//        else
-		{
-			//Walk_Forward;
-			WALK_LEFT_FRONT();
-			WALK_RIGHT_FRONT();
-		}
-		g_S8SpeedAutoTarget=60;
-		//SpeedCover(AutoMotorID, g_S8SpeedAutoCurr,&u16Speed );
-        Tracking(u16Speed);
-    }
-}
+//		g_S8SpeedAutoTarget=60;
+//		//SpeedCover(AutoMotorID, g_S8SpeedAutoCurr,&u16Speed );
+//        Tracking(u16Speed);
+//    }
+//}
 
 
 void jiexi_data()
@@ -720,13 +588,10 @@ void jiexi_data()
 
 }
 
-uint16_t g_u16TouchVal = 0;
 void GuideWalking(uint8_t Speed);
 uint32_t g_u16ObstCnt = 0;
 uint8_t g_u8speed = 60;
 
-
-uint8_t g_u8ObstFlg = 0;		//用于接收超声波避障模块状态
 
 uint16_t Angel = 0;
 uint16_t AngelDir = 0;
@@ -734,7 +599,6 @@ int main(void)
 {
 	
 	uint8_t cmd[5] = {0};
-    uint8_t touch1 = 0;
 	
     delay_init();
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
@@ -742,27 +606,25 @@ int main(void)
     uart2_init(115200);
     uart3_init(115200);
     uart4_init(115200 );
-    UART5_Configuration(9600);
-
+    //UART5_Configuration(9600);
+	RfidInit();
 	RobotGpioInit();
-	
-	while(mpu_dmp_init())
- 	{
-		delay_ms(200);
-	}  
-	
+	IIC_Init();
+//	while(mpu_dmp_init())
+// 	{
+//		delay_ms(200);
+//	}  
+	TIM3_PWM_Init(719,19);
     TIM2_Init(99,719);			//定时器周期为1ms
 
-	init_walkingmotor();                                                //?????????,?????????-1000 ~ 1000
+	//init_walkingmotor();                                                //?????????,?????????-1000 ~ 1000
     init_walkingmotor_odometer();                                       //??????????????,????
-    set_walkingmotor_speed(0, 0);                                       //???? ?:0mm/s ?:0mm/s
+    //set_walkingmotor_speed(0, 0);                                       //???? ?:0mm/s ?:0mm/s
     START_TIME;
 
     Deng=1;
 
 	Beep = 1;
-    WTC7514_Init();
-
     WTC7514_SetLevel(WTC7514_ADDR,29);
     delay_ms(100);
   
@@ -773,38 +635,11 @@ int main(void)
 
     while(1)
     {
-//		if( RingBuffer_GetCount(&g_tUSART3TxRingBuf) > 0 )
-//		{
-//			memset(&data,0,17);
-//			if( RingBuffer_PopMult( &g_tUSART3TxRingBuf, data, 17) )
-//			{
-//				USART3_SendStrings(data,17);
-//			}
-//		}
+
+		SendMsg2PAD();
+		Rfid_heartbeat();
+		Uart3_heartbeat();
 		
-		TurnWithVoice( RobotGetPos() );
-		
-//		if( RingBuffer_GetCount(&g_tUSART3RxRingBuf) > 0 )
-//		{
-//			memset(&cmd_blk,0,sizeof(cmd_blk));
-//			if( RingBuffer_PopMult( &g_tUSART3RxRingBuf, cmd_blk.u8CMDBodyByte, 17) )
-//			{
-//				if( (cmd_blk.CMDBodyBlk.u8HeadFlag == 0x02) &&(cmd_blk.CMDBodyBlk.u8TailFlag == 0x03) )
-//				{
-//					g_u8ObstFlg = cmd_blk.CMDBodyBlk.u8ObstDis0;
-//				}
-//				else
-//				{
-//					RingBuffer_Flush(&g_tUSART3RxRingBuf);
-//				}
-//				
-//				
-//			}
-//			else
-//			{
-//				RingBuffer_Flush(&g_tUSART3RxRingBuf);
-//			}
-//		}
         if( flag_RecFul==1)
         {
            OneLine(redata);
@@ -821,7 +656,7 @@ int main(void)
             // if(work_flag==1)
             {
                 flag_ID=0;
-                sensor_update();
+                //sensor_update();
                 {
                     //while(flag_ID){
                     if(Card==KA)
@@ -896,7 +731,7 @@ int main(void)
 					g_u8ObstFlg = 1;
 					if((g_u16ObstVoice == 5) || ((g_u16ObstVoice % 300) == 0))
 					{
-						usart4Printf("{\"content\":\"00%d%d%d%d00000000\"}",g_u8CardH,g_u8CardL,g_u8ObstFlg,0);
+						//usart4Printf("{\"content\":\"00%d%d%d%d00000000\"}",g_u8CardH,g_u8CardL,g_u8ObstFlg,0);
 					}
 					g_u8AutoRunFlg = 0;
                 }

@@ -2,7 +2,7 @@
 ..\obj\wifiap.o: ..\SYSTEM\sys\sys.h
 ..\obj\wifiap.o: ..\USER\stm32f10x.h
 ..\obj\wifiap.o: ..\CORE\core_cm3.h
-..\obj\wifiap.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\wifiap.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\wifiap.o: ..\USER\system_stm32f10x.h
 ..\obj\wifiap.o: ..\USER\stm32f10x_conf.h
 ..\obj\wifiap.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h
@@ -30,8 +30,8 @@
 ..\obj\wifiap.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
 ..\obj\wifiap.o: ..\STM32F10x_FWLib\inc\misc.h
 ..\obj\wifiap.o: ..\SYSTEM\usart\usart.h
-..\obj\wifiap.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\wifiap.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\wifiap.o: ..\SYSTEM\usart\ring_buffer.h
 ..\obj\wifiap.o: ..\USER\CmdPrase.h
 ..\obj\wifiap.o: ..\SYSTEM\delay\delay.h
-..\obj\wifiap.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+..\obj\wifiap.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

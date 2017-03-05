@@ -5,6 +5,7 @@
 #include "string.h"
 #include "obst.h"
 #include "gpio.h"
+#include "MsgWithPAD.h"
 
 CMDBlkTypeDef CMDBlk;
 
@@ -219,16 +220,21 @@ void Uart3_heartbeat(void)
 			if( (cmd_blk.CMDBodyBlk.u8HeadFlag == 0x02) &&(cmd_blk.CMDBodyBlk.u8TailFlag == 0x03) )
 			{
 				memset(g_u8SonarDis,0,3);
-				g_u8ObstFlg &= 0x80;
+				//g_u8ObstFlg &= 0x80;
 				g_u8SonarDis[0] = cmd_blk.CMDBodyBlk.u8ObstDis0;
 				g_u8SonarDis[1] = cmd_blk.CMDBodyBlk.u8ObstDis1;
 				g_u8SonarDis[2] = cmd_blk.CMDBodyBlk.u8ObstDis2;
 				
 				for(index=0; index<SONAR_CH_CONUT; index++)
 				{
-					if(g_u8SonarDis[index] < g_u8ObstDis)
+					if(g_u8SonarDis[index] <= g_u8ObstDis)
 					{
-						g_u8ObstFlg |= 1 <<(index);
+						//g_u8ObstFlg |= 1 <<(index);
+						SetObstBit(index);
+					}
+					else
+					{
+						ResetObstBit(index);
 					}
 				}
 				
@@ -249,14 +255,12 @@ void Uart3_heartbeat(void)
 	
 	if( (g_u8ObstFlg &0x07)> 0)
 	{
-		TEST_LED = 0;
+		TEST_LED_ON();
 	}
 	else
 	{
-		TEST_LED = 1;
+		TEST_LED_OFF();
 	}
-	
-	
 	
 }
 

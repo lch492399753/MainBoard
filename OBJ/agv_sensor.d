@@ -1,6 +1,6 @@
 ..\obj\agv_sensor.o: ..\HARDWARE\AGVSensor\AGV_Sensor.c
 ..\obj\agv_sensor.o: ..\HARDWARE\AGVSensor\AGV_Sensor.h
-..\obj\agv_sensor.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\agv_sensor.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\agv_sensor.o: ..\HARDWARE\PID\PID.h
 ..\obj\agv_sensor.o: ..\SYSTEM\sys\sys.h
 ..\obj\agv_sensor.o: ..\USER\stm32f10x.h
@@ -31,13 +31,13 @@
 ..\obj\agv_sensor.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 ..\obj\agv_sensor.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
 ..\obj\agv_sensor.o: ..\STM32F10x_FWLib\inc\misc.h
-..\obj\agv_sensor.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+..\obj\agv_sensor.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 ..\obj\agv_sensor.o: ..\HARDWARE\GPIO\gpio.h
 ..\obj\agv_sensor.o: ..\SYSTEM\delay\delay.h
 ..\obj\agv_sensor.o: ..\HARDWARE\PWM\pwm.h
 ..\obj\agv_sensor.o: ..\HARDWARE\motor\motor.h
 ..\obj\agv_sensor.o: ..\Funs\common.h
-..\obj\agv_sensor.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+..\obj\agv_sensor.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\agv_sensor.o: ..\Funs\rpstm32.h
-..\obj\agv_sensor.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+..\obj\agv_sensor.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 ..\obj\agv_sensor.o: ..\USER\user_config.h

@@ -365,7 +365,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\HARDWARE\LED;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\USER;..\STM32F10x_FWLib\inc;..\CORE;..\HARDWARE\KEY;..\HARDWARE\LCD;..\HARDWARE\RTC;..\HARDWARE\RTC;..\HARDWARE\WKUP;..\HARDWARE\ADC;..\HARDWARE\DAC;..\HARDWARE\DMA;..\HARDWARE\IIC;..\HARDWARE\24CXX;..\HARDWARE\SPI;..\HARDWARE\FLASH;..\HARDWARE\TOUCH;..\HARDWARE\REMOTE;..\HARDWARE\PWM;..\HARDWARE\GPIO;..\HARDWARE\EXTI;..\HARDWARE\ATK-ESP8266;..\HARDWARE\TONGXINJIEXI;..\HARDWARE\STMFLASH;..\HARDWARE\PID;..\HARDWARE\TACKING;..\HARDWARE\WTC7514DSI;..\HARDWARE\IIC;..\HARDWARE\AGVSensor;..\HARDWARE\iFlytek;..\Funs;..\HARDWARE\MPU6050\eMPL;..\HARDWARE\MPU6050;..\HARDWARE\motor</IncludePath>
+              <IncludePath>..\HARDWARE\LED;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\USER;..\STM32F10x_FWLib\inc;..\CORE;..\HARDWARE\KEY;..\HARDWARE\LCD;..\HARDWARE\RTC;..\HARDWARE\RTC;..\HARDWARE\WKUP;..\HARDWARE\ADC;..\HARDWARE\DAC;..\HARDWARE\DMA;..\HARDWARE\IIC;..\HARDWARE\24CXX;..\HARDWARE\SPI;..\HARDWARE\FLASH;..\HARDWARE\TOUCH;..\HARDWARE\REMOTE;..\HARDWARE\PWM;..\HARDWARE\GPIO;..\HARDWARE\EXTI;..\HARDWARE\ATK-ESP8266;..\HARDWARE\TONGXINJIEXI;..\HARDWARE\STMFLASH;..\HARDWARE\PID;..\HARDWARE\TACKING;..\HARDWARE\WTC7514DSI;..\HARDWARE\IIC;..\HARDWARE\AGVSensor;..\HARDWARE\iFlytek;..\Funs;..\HARDWARE\MPU6050\eMPL;..\HARDWARE\MPU6050;..\HARDWARE\motor;..\HARDWARE\RFID</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -514,15 +514,20 @@
               <FilePath>..\HARDWARE\MPU6050\eMPL\inv_mpu.c</FilePath>
             </File>
             <File>
-              <FileName>inv_mpu_dmp_motion_driver.c</FileName>
+              <FileName>rfid.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\HARDWARE\MPU6050\eMPL\inv_mpu_dmp_motion_driver.c</FilePath>
+              <FilePath>..\HARDWARE\RFID\rfid.c</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
           <GroupName>WIFI</GroupName>
           <Files>
+            <File>
+              <FileName>inv_mpu_dmp_motion_driver.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\MPU6050\eMPL\inv_mpu_dmp_motion_driver.c</FilePath>
+            </File>
             <File>
               <FileName>wifiap.c</FileName>
               <FileType>1</FileType>
@@ -642,6 +647,11 @@
               <FileName>obst.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Funs\obst.c</FilePath>
+            </File>
+            <File>
+              <FileName>MsgWithPAD.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Funs\MsgWithPAD.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -2,7 +2,7 @@
 ..\obj\pwm.o: ..\HARDWARE\PWM\pwm.h
 ..\obj\pwm.o: ..\USER\stm32f10x.h
 ..\obj\pwm.o: ..\CORE\core_cm3.h
-..\obj\pwm.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\pwm.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\pwm.o: ..\USER\system_stm32f10x.h
 ..\obj\pwm.o: ..\USER\stm32f10x_conf.h
 ..\obj\pwm.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h
@@ -30,12 +30,12 @@
 ..\obj\pwm.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
 ..\obj\pwm.o: ..\STM32F10x_FWLib\inc\misc.h
 ..\obj\pwm.o: ..\SYSTEM\usart\usart.h
-..\obj\pwm.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\pwm.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\pwm.o: ..\SYSTEM\sys\sys.h
 ..\obj\pwm.o: ..\SYSTEM\usart\ring_buffer.h
 ..\obj\pwm.o: ..\USER\CmdPrase.h
 ..\obj\pwm.o: ..\HARDWARE\PID\PID.h
-..\obj\pwm.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+..\obj\pwm.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 ..\obj\pwm.o: ..\HARDWARE\GPIO\gpio.h
 ..\obj\pwm.o: ..\HARDWARE\TACKING\Tracking.h
 ..\obj\pwm.o: ..\HARDWARE\iFlytek\iFlytek.h
@@ -43,7 +43,10 @@
 ..\obj\pwm.o: ..\Funs\PoseWithVoice_Fun.h
 ..\obj\pwm.o: ..\HARDWARE\motor\motor.h
 ..\obj\pwm.o: ..\Funs\common.h
-..\obj\pwm.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+..\obj\pwm.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\pwm.o: ..\Funs\rpstm32.h
-..\obj\pwm.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+..\obj\pwm.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 ..\obj\pwm.o: ..\USER\user_config.h
+..\obj\pwm.o: ..\Funs\obst.h
+..\obj\pwm.o: ..\HARDWARE\WTC7514DSI\wtc7514.h
+..\obj\pwm.o: ..\Funs\MsgWithPAD.h

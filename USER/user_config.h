@@ -26,14 +26,14 @@
 /*
 *	手动速度设置 单位 mm/s
 */
-#define HIGH_SPEED		400			// 	400 mm/s  0.4m/s
-#define MIDDLE_SPEED	300			//	300 mm/s  0.3m/s
-#define LOW_SPEED		200			//	200 mm/s  0.2m/s
+#define HIGH_SPEED		75			// 	400 mm/s  0.4m/s
+#define MIDDLE_SPEED	50			//	300 mm/s  0.3m/s
+#define LOW_SPEED		25			//	200 mm/s  0.2m/s
 
 /*
 *	转弯速度 单位 mm/s
 */
-#define TURN_SPEED		200			//	200 mm/s  0.2mm/s
+#define TURN_SPEED		25			//	200 mm/s  0.2mm/s
 
 
 

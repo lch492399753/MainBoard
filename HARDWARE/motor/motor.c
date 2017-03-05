@@ -600,7 +600,7 @@ void speedctl_heartbeat(_u32 durationMs)
     {
         //speedctl_frequency = currentTs;
         _refresh_walkingmotor_odometer(durationMs);                  //定时获取反馈编码值
-        control_walkingmotor_speed();                           //进而进行速度控制
+       // control_walkingmotor_speed();                           //进而进行速度控制
 
     }
 

@@ -54,6 +54,9 @@
 #define Beep		PEout(5)	
 #define TEST_LED	PEout(2)
 
+#define TEST_LED_ON();	PEout(2) = 0;
+#define TEST_LED_OFF();	PEout(2) = 1;	
+
 void Bizhang_Gpio_Init(void);
 void LED_AND_DENGTIAO_Init(void); 
 void SPEED_GPIO_Init(void); 

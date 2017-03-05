@@ -136,4 +136,5 @@ void SetARAct( char ar, char dir, uint16_t Angel, uint16_t Speed);
 void SetExpress( char express_id);
 void SetObst(uint8_t dis);
 void SetLimit( char _cmd);
+void Uart3_heartbeat(void);
 #endif

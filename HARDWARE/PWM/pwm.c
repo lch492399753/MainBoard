@@ -6,6 +6,8 @@
 #include "iFlytek.h"
 #include "PoseWithVoice_Fun.h"
 #include "motor.h"
+#include "obst.h"
+#include "wtc7514.h"
 
 s16 SPEEDL=0;
 s16 SPEEDR=0;
@@ -111,7 +113,7 @@ void TIM2_IRQHandler(void)   //TIM3ÖÐ¶Ï
         if(g_u16ObstTimeCount >= 20)
         {
             g_u16ObstTimeCount=0;
-            if(g_u8ObstFlg > 0)
+            if( (GetObstBitSta() & 0x80) > 0)
             {
                 g_u8ObstCount++;
 				g_u16ObstVoice++;
@@ -130,92 +132,92 @@ void TIM2_IRQHandler(void)   //TIM3ÖÐ¶Ï
             }
         }
 		
-//		if(g_u8SpeedChangeTime >= 10)
-//		{
-//			g_u8SpeedChangeTime = 0;
-//			//if(g_u8StopFlg == 0)
-//			{
-//				if(g_S8SpeedRTarget > g_S8SpeedRCurr)
-//				{
-//					
-//					if( (g_S8SpeedRTarget - g_S8SpeedRCurr) <20)
-//					{
-//						g_S8SpeedRCurr ++;
-//					}
-//					else
-//					{
-//						g_S8SpeedRCurr += g_u8SpeedDelta;
-//					}
+		if(g_u8SpeedChangeTime >= 10)
+		{
+			g_u8SpeedChangeTime = 0;
+			//if(g_u8StopFlg == 0)
+			{
+				if(g_S8SpeedRTarget > g_S8SpeedRCurr)
+				{
+					
+					if( (g_S8SpeedRTarget - g_S8SpeedRCurr) <20)
+					{
+						g_S8SpeedRCurr ++;
+					}
+					else
+					{
+						g_S8SpeedRCurr += g_u8SpeedDelta;
+					}
 
-//				}
-//				else if(g_S8SpeedRTarget < g_S8SpeedRCurr)
-//				{
-//					if((g_S8SpeedRCurr - g_S8SpeedRTarget) <20 )
-//					{
-//						g_S8SpeedRCurr --;
-//					}
-//					else
-//					{
-//						g_S8SpeedRCurr -= g_u8SpeedDelta;
-//					}
-//					
+				}
+				else if(g_S8SpeedRTarget < g_S8SpeedRCurr)
+				{
+					if((g_S8SpeedRCurr - g_S8SpeedRTarget) <20 )
+					{
+						g_S8SpeedRCurr --;
+					}
+					else
+					{
+						g_S8SpeedRCurr -= g_u8SpeedDelta;
+					}
+					
 
-//				}
-//				else
-//				{
-//					g_S8SpeedRCurr = g_S8SpeedRTarget;
+				}
+				else
+				{
+					g_S8SpeedRCurr = g_S8SpeedRTarget;
 
-//				}
-//				
+				}
+				
 
-//				if(g_S8SpeedLTarget > g_S8SpeedLCurr)
-//				{
-//					if( (g_S8SpeedLTarget - g_S8SpeedLCurr) <20)
-//					{
-//						g_S8SpeedLCurr ++;
-//					}
-//					else
-//					{
-//						g_S8SpeedLCurr += g_u8SpeedDelta;
-//					}
+				if(g_S8SpeedLTarget > g_S8SpeedLCurr)
+				{
+					if( (g_S8SpeedLTarget - g_S8SpeedLCurr) <20)
+					{
+						g_S8SpeedLCurr ++;
+					}
+					else
+					{
+						g_S8SpeedLCurr += g_u8SpeedDelta;
+					}
 
-//				}
-//				else if(g_S8SpeedLTarget < g_S8SpeedLCurr)
-//				{
-//					if((g_S8SpeedLCurr - g_S8SpeedLTarget) <20 )
-//					{
-//						g_S8SpeedLCurr --;
-//					}
-//					else
-//					{
-//						g_S8SpeedLCurr -= g_u8SpeedDelta;
-//					}
+				}
+				else if(g_S8SpeedLTarget < g_S8SpeedLCurr)
+				{
+					if((g_S8SpeedLCurr - g_S8SpeedLTarget) <20 )
+					{
+						g_S8SpeedLCurr --;
+					}
+					else
+					{
+						g_S8SpeedLCurr -= g_u8SpeedDelta;
+					}
 
-//				}
-//				else
-//				{
-//					g_S8SpeedLCurr = g_S8SpeedLTarget;
+				}
+				else
+				{
+					g_S8SpeedLCurr = g_S8SpeedLTarget;
 
-//					//g_u8StopFlg =1;
-//				}
-//				
-//				if(g_S8SpeedAutoTarget > g_S8SpeedAutoCurr)
-//				{
-//					g_S8SpeedAutoCurr +=1;
-//				}
-//				else if(g_S8SpeedAutoTarget < g_S8SpeedAutoCurr)
-//				{
-//					g_S8SpeedAutoCurr-=1;
-//				}
-//				else
-//				{
-//					g_S8SpeedAutoCurr = g_S8SpeedAutoTarget;
-//					//g_u8StopFlg =1;
-//				}
-//				
-//			}
-//			
-//		}
+					//g_u8StopFlg =1;
+				}
+				
+				if(g_S8SpeedAutoTarget > g_S8SpeedAutoCurr)
+				{
+					g_S8SpeedAutoCurr +=1;
+				}
+				else if(g_S8SpeedAutoTarget < g_S8SpeedAutoCurr)
+				{
+					g_S8SpeedAutoCurr-=1;
+				}
+				else
+				{
+					g_S8SpeedAutoCurr = g_S8SpeedAutoTarget;
+					//g_u8StopFlg =1;
+				}
+				
+			}
+			
+		}
 		
 		if(g_u8MotorFeresh >= CONF_MOTOR_HEARTBEAT_DURATION)
 		{
@@ -232,28 +234,10 @@ void TIM2_IRQHandler(void)   //TIM3ÖÐ¶Ï
 //		CheckWakeUpSta();
 //	if(g_u16TouchTimer ==4)
 //		tmp = ReadWakeUpSta();
-    if(g_u16TouchTimer > 5)
+    if(g_u16TouchTimer > 50)
     {
-		//tmp = ReadWakeUpSta();
-//        TouchValUpdate();
-		//if(tmp == 1)
-//		{
-//			g_u16iFlyTekAngel = ReadWakeUpAngel();
-//		
-//			if((g_u16iFlyTekAngel>0) && (g_u16iFlyTekAngel<360))
-//			{
-//				if(g_u16iFlyTekAngel != g_u16iFlyTekAngelPre)
-//			{
-//				g_u16iFlyTekAngelPre = g_u16iFlyTekAngel;
-//				g_tVoiceCtl.u16WakeAng = g_u16iFlyTekAngel;
-//				g_tVoiceCtl.u8IsWakeUp = 1;
-//			}
-//			}
-//			
-//		}
-		//if(ReadWakeUpSta() == 1)
 			
-		
+		touch_heartbeat();
 		g_u16TouchTimer = 0;
     }
     if(time>=10	)

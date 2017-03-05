@@ -19,5 +19,8 @@ uint8_t IsObstOpen(void);
 
 void ObstDisFLASHCheck(void);
 void CmdSetObst( uint8_t dis);
+void SetObstBit(uint8_t _ch);
+void ResetObstBit(uint8_t _ch);
+uint8_t GetObstBitSta(void);
 #endif
 

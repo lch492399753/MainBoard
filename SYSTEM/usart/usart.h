@@ -41,6 +41,7 @@
 
 #define USART2_BUFF_SIZE 32
 #define USART3_BUFF_SIZE 256
+
 extern uint8_t g_u8Usart2RecFlg ;
 extern uint8_t g_u8Usart2RecLen ;
 extern u8 g_cUSART2RxBuffer[USART2_BUFF_SIZE];
@@ -69,9 +70,7 @@ extern  u16 Actual_Pwm1;
 extern  u16 Actual_Pwm2;
 extern  u16 Preset_Pwm;
 
-#define UART5_REC_LEN 256
-extern uint16_t UART5_RX_STA;
-extern uint8_t UART5_RX_BUF[UART5_REC_LEN];
+
 
 //如果想串口中断接收，请不要注释以下宏定义
 void uart_init(u32 bound);

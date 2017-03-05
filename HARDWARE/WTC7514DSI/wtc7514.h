@@ -1,7 +1,10 @@
-#ifndef WCT7514_H
-#define WCT7514_H
+#ifndef __WCT7514_H
+#define __WCT7514_H
 #include "myiic.h"
+#include "MsgWithPAD.h"
+#include "GPIO.h"
 
+#define DEVICE_ADDR 0x70
 #define WTC7514_ADDR 0x70
 #define DEVICE_ADDR_HEAD 0x78
 
@@ -30,6 +33,6 @@ void WTC7514_Init(void); //≥ı ºªØIIC
 void WTC7514_SetLevel_head(u8 level);
 u16 WTC7514_ReadTwoByte(u8 _addr);
 u16 WTC7514_ReadTwoByte_head(void);
-
+void touch_heartbeat(void);
 
 #endif

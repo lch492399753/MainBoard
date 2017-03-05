@@ -17,6 +17,7 @@
 "..\obj\mpu6050.o"
 "..\obj\mpuiic.o"
 "..\obj\inv_mpu.o"
+"..\obj\rfid.o"
 "..\obj\inv_mpu_dmp_motion_driver.o"
 "..\obj\wifiap.o"
 "..\obj\delay.o"
@@ -36,6 +37,7 @@
 "..\obj\posewithvoice_fun.o"
 "..\obj\common.o"
 "..\obj\obst.o"
+"..\obj\msgwithpad.o"
 --library_type=microlib --strict --scatter "..\OBJ\REMOTE.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

@@ -15,12 +15,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-//触摸引脚：PC3=SDA  PC2=SCL
+//触摸引脚：PC3=SDA TPAD3  PC2=SCL TPAD4
 
-//IO方向设置
- 
-//#define SDA_IN()  {GPIOB->CRL&=0X0FFFFFFF;GPIOB->CRL|=(u32)8<<28;}
-//#define SDA_OUT() {GPIOB->CRL&=0X0FFFFFFF;GPIOB->CRL|=(u32)3<<28;}
 #define SDA_IN()  {GPIOC->CRL&=0XFFFF0FFF;GPIOC->CRL|=(u32)8<<12;}
 #define SDA_OUT() {GPIOC->CRL&=0XFFFF0FFF;GPIOC->CRL|=(u32)3<<12;}
 
@@ -45,18 +41,6 @@ void IIC_NAck(void);				//IIC不发送ACK信号
 void IIC_Write_One_Byte(u8 daddr,u8 addr,u8 data);
 u8 IIC_Read_One_Byte(u8 daddr,u8 addr);	  
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
